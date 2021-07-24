@@ -1,0 +1,43 @@
+select A.name, A.email_id from (select dim_users.name, dim_users.email_id,dim_users.added_at,sum(fact_orders.amt) as total_sum from 
+fact_orders LEFT JOIN dim_users on fact_orders.user_id=dim_users.id LEFT JOIN dim_vendors
+on fact_orders.vendor_id=dim_vendors.id
+WHERE
+fact_orders.status=0
+and dim_vendors.is_active=true
+and fact_orders.placed_at > Now() - interval '365 days'
+GROUP BY
+dim_users.id,dim_users.email_id
+order by dim_users.added_at desc)A limit 5;
+
+
+
+select A.* from (select dim_vendors.id, dim_vendors.type,sum(fact_orders.amt) as total_amt_cancelled
+from
+fact_orders
+left join
+dim_vendors
+on
+fact_orders.vendor_id = dim_vendors.id
+where
+fact_orders.status = -1
+and fact_orders.placed_at > Now() - interval '1095 days'
+GROUP BY
+dim_vendors.id, dim_vendors.type
+ORDER BY
+total_amt_cancelled)A limit 3;
+
+
+
+select dim_vendors.id, dim_vendors.type,sum(fact_orders.amt) as total_amt_non_successful
+from
+fact_orders
+left join
+dim_vendors
+on
+fact_orders.vendor_id = dim_vendors.id
+where
+fact_orders.status = 2  or fact_orders.status=3
+GROUP BY
+dim_vendors.id, dim_vendors.type
+ORDER BY
+total_amt_non_successful  
