@@ -1,0 +1,6 @@
+id,name,phone_no,created_at,deactivated_at,email_id,is_active
+1,John,420298154,2020-07-21 14:01:10,,john.doe@gmail.com            ,t
+2,Ross,420298189,2020-05-20 15:02:10,,ross.geller@gmail.com         ,t
+3,Rachele,420900199,2019-02-20 15:02:10,,rachele.green@gmail.com       ,f
+4,Ted,420902363,2019-07-05 17:07:12,,ted.morris@gmail.com          ,t
+5,Barney,420902378,2018-05-05 17:07:12,2018-09-05 17:07:12,barney_stinson@gmail.com      ,f
