@@ -1,5 +1,4 @@
-# DH_TakeHome
-Assignment on Postgres and Docker.
+Working with Postgres and Docker.
 
 1. Setup to be done using docker.
 2. Pull postgres image from the hub.docker.
